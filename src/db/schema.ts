@@ -1,6 +1,6 @@
 import { boolean, integer, pgTable, timestamp, unique, uuid, varchar } from "drizzle-orm/pg-core";
 
-export const usersTable = {
+export const usersTable = pgTable('users', {
     id: uuid('id').primaryKey().defaultRandom(),
     firstName: varchar('first_name', {length: 50}).notNull(),
     lastName: varchar('last_name', {length: 50}),
@@ -11,4 +11,4 @@ export const usersTable = {
     createdAt: timestamp('created_at').defaultNow().notNull(),
     updatedAt: timestamp('updated_at').$onUpdate(() => new Date()),
 
-}
+})
